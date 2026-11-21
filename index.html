@@ -9,92 +9,136 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#f6f4f0; --ink:#1b1c1a; --muted:#5f625c;
-    --line:#dedad1; --accent:#2f5d50; --accent-soft:#e7ede9;
+    --bg:#f6f4f0; --panel:#fffdf9; --ink:#1b1c1a; --muted:#60635d;
+    --line:#ded9d0; --hair:#eae6de; --accent:#2f5d50; --accent-soft:#e7ede9;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --bg:#131413; --ink:#ecebe6; --muted:#a3a7a1;
-           --line:#2c2e2b; --accent:#90c4b2; --accent-soft:#1d2824; }
+    :root{ --bg:#121312; --panel:#191b19; --ink:#eceae5; --muted:#a4a8a2;
+           --line:#2b2d2a; --hair:#232522; --accent:#8fc5b2; --accent-soft:#1c2724; }
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
-  body{
-    margin:0; background:var(--bg); color:var(--ink);
+  body{margin:0; background:var(--bg); color:var(--ink);
     font-family:Inter,system-ui,sans-serif; font-size:17px; line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:780px; margin:0 auto; padding:0 28px}
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px; margin:0 auto; padding:0 28px}
   a{color:var(--accent); text-decoration:none;
     border-bottom:1px solid color-mix(in srgb, var(--accent) 35%, transparent)}
   a:hover{border-bottom-color:var(--accent)}
 
-  /* language switch */
-  .switch{position:sticky; top:0; z-index:20; background:
-     linear-gradient(to bottom, var(--bg) 70%, transparent);
-     padding:16px 0 10px}
-  .switch .inner{max-width:780px; margin:0 auto; padding:0 28px;
-     display:flex; justify-content:flex-end; gap:6px}
-  .switch button{
-    font:inherit; font-size:12.5px; letter-spacing:.1em; text-transform:uppercase;
+  /* top bar */
+  .bar{position:sticky; top:0; z-index:30; background:var(--bg);
+       border-bottom:1px solid transparent; transition:border-color .2s}
+  .bar.stuck{border-bottom-color:var(--hair)}
+  .bar .inner{max-width:820px; margin:0 auto; padding:13px 28px;
+       display:flex; align-items:center; justify-content:space-between; gap:16px}
+  .bar .who{font-size:13.5px; letter-spacing:.02em; color:var(--muted);
+       opacity:0; transform:translateY(3px); transition:.25s}
+  .bar.stuck .who{opacity:1; transform:none}
+  .lang{display:flex; gap:6px}
+  .lang button{font:inherit; font-size:12px; letter-spacing:.1em; text-transform:uppercase;
     color:var(--muted); background:none; border:1px solid var(--line);
-    border-radius:999px; padding:5px 13px; cursor:pointer; transition:.15s}
-  .switch button:hover{color:var(--ink)}
-  .switch button[aria-pressed="true"]{color:var(--accent); background:var(--accent-soft);
-    border-color:color-mix(in srgb, var(--accent) 30%, transparent)}
+    border-radius:999px; padding:5px 12px; cursor:pointer; transition:.15s}
+  .lang button:hover{color:var(--ink)}
+  .lang button[aria-pressed="true"]{color:var(--accent); background:var(--accent-soft);
+    border-color:color-mix(in srgb, var(--accent) 32%, transparent)}
 
-  header{padding:34px 0 56px}
-  .hero{display:flex; gap:38px; align-items:flex-start}
+  header{padding:40px 0 60px}
+  .hero{display:flex; gap:40px; align-items:flex-start}
   .hero .text{flex:1 1 auto; min-width:0}
-  .portrait{flex:0 0 168px; width:168px}
+  .portrait{flex:0 0 164px; width:164px; margin:0; position:relative}
   .portrait img{width:100%; height:auto; display:block; border-radius:3px;
-    filter:saturate(.92) contrast(1.02)}
-  .portrait figcaption{font-size:12.5px; color:var(--muted); margin-top:10px; line-height:1.45}
+    filter:saturate(.9) contrast(1.02)}
+  .portrait::after{content:""; position:absolute; inset:0; border-radius:3px;
+    box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--ink) 10%, transparent)}
 
-  .eyebrow{font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0 0 16px}
-  h1{font-family:Newsreader,Georgia,serif; font-weight:500; font-size:clamp(36px,6.4vw,54px);
-     line-height:1.08; letter-spacing:-.015em; margin:0 0 8px}
+  .eyebrow{font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin:0 0 16px}
+  h1{font-family:Newsreader,Georgia,serif; font-weight:500; font-size:clamp(36px,6.4vw,56px);
+     line-height:1.06; letter-spacing:-.018em; margin:0 0 10px}
   .role{font-family:Newsreader,Georgia,serif; font-style:italic; font-size:clamp(18px,3.2vw,23px);
         color:var(--muted); margin:0 0 26px}
-  .lede{font-size:18.5px; max-width:58ch; margin:0 0 14px}
-  .meta{display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:24px; font-size:14.5px; color:var(--muted)}
+  .lede{font-size:18.5px; max-width:56ch; margin:0 0 14px}
+  .meta{display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:26px; font-size:14px; color:var(--muted)}
 
-  section{padding:46px 0; border-top:1px solid var(--line)}
-  h2{font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
-     font-weight:600; margin:0 0 30px}
+  section{padding:52px 0; border-top:1px solid var(--line)}
+  h2{display:flex; align-items:baseline; gap:12px;
+     font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted);
+     font-weight:600; margin:0 0 34px}
+  h2::before{content:attr(data-n); font-family:Newsreader,serif; font-style:italic;
+     font-size:15px; letter-spacing:0; text-transform:none;
+     color:color-mix(in srgb, var(--accent) 65%, transparent)}
 
-  .item{margin-bottom:38px}
+  .item{margin-bottom:44px}
   .item:last-child{margin-bottom:0}
-  .item h3{font-family:Newsreader,Georgia,serif; font-weight:500; font-size:22px; line-height:1.3; margin:0 0 4px}
-  .where{font-size:14.5px; color:var(--muted); margin:0 0 14px}
+  .item h3{font-family:Newsreader,Georgia,serif; font-weight:500; font-size:23px; line-height:1.28; margin:0 0 5px}
+  .where{font-size:14px; color:var(--muted); margin:0 0 14px}
   .item p{margin:0 0 12px; max-width:64ch}
   .item p:last-child{margin-bottom:0}
+
+  /* process flow */
+  .flow{display:flex; flex-wrap:wrap; align-items:stretch; gap:7px; margin:24px 0 0}
+  .node{flex:1 1 104px; min-width:104px; background:var(--panel);
+    border:1px solid var(--line); border-radius:4px; padding:10px 11px 11px}
+  .node .n{font-size:10px; letter-spacing:.12em; text-transform:uppercase;
+    color:color-mix(in srgb, var(--muted) 80%, transparent)}
+  .node .t{font-size:13.5px; line-height:1.3; margin-top:4px}
+  .node .s{font-size:11.5px; line-height:1.35; color:var(--muted); margin-top:4px}
+  .node.in{border-style:dashed; background:none}
+  .node.out{border-color:color-mix(in srgb, var(--accent) 45%, transparent);
+    background:var(--accent-soft)}
+  .node.out .t{color:var(--accent)}
+  .arr{flex:0 0 auto; align-self:center; color:color-mix(in srgb, var(--muted) 70%, transparent);
+    font-size:13px; line-height:1; padding:0 1px}
+  .vars{margin-top:12px; font-size:12.5px; color:var(--muted); max-width:64ch}
+  .vars b{font-weight:500; color:var(--ink)}
+  .cap{margin-top:9px; font-size:12px; color:var(--muted); letter-spacing:.02em}
+
+  .tags{display:flex; flex-wrap:wrap; gap:7px; margin-top:18px}
+  .tag{font-size:12.5px; color:var(--accent); background:var(--accent-soft);
+       border-radius:999px; padding:4px 11px; line-height:1.5}
 
   ul.plain{list-style:none; padding:0; margin:0}
   ul.plain li{padding-left:18px; position:relative; margin-bottom:8px; max-width:64ch}
   ul.plain li::before{content:""; position:absolute; left:0; top:.72em; width:7px; height:1px; background:var(--muted)}
 
-  .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px}
-  .tag{font-size:13px; color:var(--accent); background:var(--accent-soft);
-       border-radius:999px; padding:4px 11px; line-height:1.5}
-
   .grid{display:grid; gap:30px; grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
-  .grid h3{font-size:16px; font-family:Inter,sans-serif; font-weight:600; margin:0 0 10px}
-  .grid li{font-size:15.5px; color:var(--muted)}
+  .grid h3{font-size:15.5px; font-family:Inter,sans-serif; font-weight:600; margin:0 0 10px}
+  .grid li{font-size:15px; color:var(--muted)}
 
   .roles .r{display:flex; flex-wrap:wrap; gap:4px 14px; align-items:baseline;
-            padding:14px 0; border-bottom:1px solid var(--line)}
+            padding:14px 0; border-bottom:1px solid var(--hair)}
   .roles .r:last-child{border-bottom:none}
   .roles .r strong{font-weight:500; font-size:16.5px}
   .roles .r span.org{color:var(--muted); font-size:15px; flex:1 1 auto}
   .roles .r span.yrs{color:var(--muted); font-size:14px; font-variant-numeric:tabular-nums}
-  .note{margin-top:20px; color:var(--muted); font-size:15.5px; max-width:64ch}
+  .note{margin-top:20px; color:var(--muted); font-size:15px; max-width:64ch}
 
   .contact p{max-width:58ch}
-  .lines{margin-top:18px; font-size:16px}
-  .lines div{margin-bottom:8px}
-  .k{display:inline-block; min-width:104px; color:var(--muted); font-size:14.5px}
+  .lines{margin-top:20px; font-size:16px}
+  .lines div{margin-bottom:9px}
+  .k{display:inline-block; min-width:104px; color:var(--muted); font-size:14px}
 
-  footer{padding:40px 0 70px; font-size:13.5px; color:var(--muted); border-top:1px solid var(--line)}
+  footer{padding:38px 0 72px; font-size:13px; color:var(--muted); border-top:1px solid var(--line)}
+
+
+  :root{ --s1:#2f5d50; --s2:#a4663a; --s3:#4a6382; }
+  @media (prefers-color-scheme: dark){
+    :root{ --s1:#8fc5b2; --s2:#d6a173; --s3:#93aacb; }
+  }
+  .fig{margin:26px 0 0; padding:0}
+  .chart{width:100%; height:auto; display:block}
+  .chart .grid{stroke:var(--line); stroke-width:1}
+  .chart .ax{fill:var(--muted); font-size:11px; font-family:Inter,sans-serif}
+  .chart .axl{fill:var(--muted); font-size:11px; letter-spacing:.04em; font-family:Inter,sans-serif}
+  .chart .sl{font-size:11.5px; font-family:Inter,sans-serif}
+  .fig figcaption{font-size:12.5px; color:var(--muted); line-height:1.5; margin-top:6px; max-width:62ch}
+  .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:4px;
+    overflow:hidden; margin:26px 0 20px}
+  .kpi{background:var(--panel); padding:13px 14px}
+  .kpi b{display:block; font-family:Newsreader,Georgia,serif; font-weight:500; font-size:24px;
+    line-height:1.1; color:var(--accent); font-variant-numeric:tabular-nums}
+  .kpi span{display:block; font-size:12.5px; color:var(--muted); line-height:1.4; margin-top:5px}
 
   [data-lang]{display:none}
   [data-lang].on{display:block}
@@ -102,23 +146,29 @@
   @media (max-width:640px){
     body{font-size:16.5px}
     .hero{flex-direction:column-reverse; gap:26px}
-    .portrait{flex:0 0 auto; width:132px}
-    header{padding:22px 0 40px}
+    .portrait{flex:0 0 auto; width:128px}
+    header{padding:26px 0 44px}
     .lede{font-size:17.5px}
-    .k{min-width:88px; display:block}
+    .k{min-width:0; display:block}
+    .node{flex:1 1 calc(50% - 14px)}
+    .arr{display:none}
+    .flow{gap:8px}
   }
 </style>
 </head>
 <body>
 
-<div class="switch">
+<div class="bar" id="bar">
   <div class="inner">
-    <button id="btn-de" aria-pressed="false" onclick="setLang('de')">Deutsch</button>
-    <button id="btn-en" aria-pressed="true" onclick="setLang('en')">English</button>
+    <span class="who">Alan Tharakan</span>
+    <div class="lang">
+      <button id="btn-de" aria-pressed="false" onclick="setLang('de')">Deutsch</button>
+      <button id="btn-en" aria-pressed="true" onclick="setLang('en')">English</button>
+    </div>
   </div>
 </div>
 
-<!-- ============================ ENGLISH ============================ -->
+<!-- =========================== ENGLISH =========================== -->
 <div data-lang="en" class="on">
 <div class="wrap">
 
@@ -136,9 +186,7 @@
           into operating parameters. I am looking for a process or project engineering role and can
           relocate anywhere in Germany.</p>
       </div>
-      <figure class="portrait" style="margin:0">
-        <img src="photo.jpg" alt="Alan Tharakan">
-      </figure>
+      <figure class="portrait"><img src="photo.jpg" alt="Alan Tharakan"></figure>
     </div>
     <div class="meta">
       <span>M.Sc. Mechanical and Process Engineering, TU Bergakademie Freiberg</span>
@@ -147,34 +195,122 @@
   </header>
 
   <section>
-    <h2>Selected work</h2>
+    <h2 data-n="01">Experience</h2>
 
     <div class="item">
-      <h3>Wet-mechanical separation of LFP cathode foils</h3>
+      <h3>Wet decoating of polymer-based solid-state battery cathodes</h3>
       <p class="where">Master's thesis &middot; TU Bergakademie Freiberg, Institute of Mechanical Process Engineering and Mineral Processing &middot; 03/2025 &ndash; 09/2025</p>
-      <p>The task was to recover active material from LFP cathode foils on a wet-mechanical route. I
-        set up the whole process chain in the lab and ran it myself: detachment, wet milling in a
-        Retsch CryoMill, wet classification, filtration, then analysis.</p>
-      <p>I optimised the milling step with a design of experiments across four parameters, milling
-        time, frequency, grinding media size and filling degree, over roughly 100 trials at 0.3 g
-        sample mass. Active material yield improved by more than 15 %, closed out with a mass balance
-        from ICP-OES measurements and cross-checked by laser diffraction. I presented the results at
-        the institute colloquium.</p>
-      <div class="tags"><span class="tag">DoE</span><span class="tag">Wet milling</span><span class="tag">Classification</span><span class="tag">Filtration</span><span class="tag">Mass balance</span><span class="tag">ICP-OES</span><span class="tag">Laser diffraction</span></div>
+      <p>A parameter study on getting the coating off LFP cathode foils with a PEO solid polymer
+        electrolyte, by wet milling in a mixer mill. These cathodes do not respond to the usual
+        solvent route, so the question was whether mechanical decoating in water works at all, and
+        at which settings. I built the process chain in the lab and ran it myself, every condition in
+        triplicate.</p>
+
+      <div class="flow">
+        <div class="node in"><div class="n">Feed</div><div class="t">SSB cathode sheet</div><div class="s">LFP, PEO, LiTFSI, carbon black; 5 &times; 5 mm pieces, approx. 0.33 g</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">01</div><div class="t">Wet milling</div><div class="s">Retsch CryoMill, 50 mL steel jar, ZrO&#8322; beads, distilled water</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">02</div><div class="t">Two-stage wet sieving</div><div class="s">foils and beads out, suspension on</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">03</div><div class="t">Particle size</div><div class="s">Mastersizer 3000, laser diffraction</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">04</div><div class="t">Vacuum filtration</div><div class="s">B&uuml;chner, 5&ndash;8 / 2&ndash;3 / 0.45 &micro;m</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node out"><div class="n">Output</div><div class="t">Cathode active material</div><div class="s">filtrate analysed by ICP-OES</div></div>
+      </div>
+      <p class="vars"><b>Parameters varied:</b> frequency 5, 10, 15 Hz &middot; milling time 10 to
+        30 min &middot; filling volume 70 and 80 % &middot; grinding media 0.4&ndash;0.6 and
+        0.8&ndash;1.0 mm. Decoating efficiency from a mass balance on the dried foil, recovery
+        efficiency from the filter mass.</p>
+
+      <figure class="fig">
+        <svg class="chart" viewBox="0 0 540 232" role="img" aria-label="Decoating efficiency versus milling time">
+        <line class="grid" x1="56" y1="176.0" x2="486" y2="176.0"/>
+        <text class="ax" x="46" y="180.0" text-anchor="end">85</text>
+        <line class="grid" x1="56" y1="124.0" x2="486" y2="124.0"/>
+        <text class="ax" x="46" y="128.0" text-anchor="end">90</text>
+        <line class="grid" x1="56" y1="72.0" x2="486" y2="72.0"/>
+        <text class="ax" x="46" y="76.0" text-anchor="end">95</text>
+        <line class="grid" x1="56" y1="20.0" x2="486" y2="20.0"/>
+        <text class="ax" x="46" y="24.0" text-anchor="end">100</text>
+        <text class="ax" x="56.0" y="196" text-anchor="middle">10</text>
+        <text class="ax" x="163.5" y="196" text-anchor="middle">15</text>
+        <text class="ax" x="271.0" y="196" text-anchor="middle">20</text>
+        <text class="ax" x="378.5" y="196" text-anchor="middle">25</text>
+        <text class="ax" x="486.0" y="196" text-anchor="middle">30</text>
+        <text class="axl" x="271" y="218" text-anchor="middle">Milling time, min</text>
+        <text class="axl" x="14" y="98" text-anchor="middle" transform="rotate(-90 14 98)">Decoating efficiency, %</text>
+        <polyline points="163.5,152.4 271.0,81.3 378.5,57.6 486.0,46.4" fill="none" stroke="var(--s1)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="163.5" cy="152.4" r="3.1" fill="var(--s1)"/>
+        <circle cx="271.0" cy="81.3" r="3.1" fill="var(--s1)"/>
+        <circle cx="378.5" cy="57.6" r="3.1" fill="var(--s1)"/>
+        <circle cx="486.0" cy="46.4" r="3.1" fill="var(--s1)"/>
+        <text class="sl" x="495.0" y="50.4" fill="var(--s1)">5 Hz</text>
+        <polyline points="163.5,78.3 271.0,109.0 378.5,96.6" fill="none" stroke="var(--s2)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="163.5" cy="78.3" r="3.1" fill="var(--s2)"/>
+        <circle cx="271.0" cy="109.0" r="3.1" fill="var(--s2)"/>
+        <circle cx="378.5" cy="96.6" r="3.1" fill="var(--s2)"/>
+        <text class="sl" x="387.5" y="100.6" fill="var(--s2)">10 Hz</text>
+        <polyline points="56.0,133.4 163.5,121.1 271.0,66.2 378.5,71.7" fill="none" stroke="var(--s3)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="56.0" cy="133.4" r="3.1" fill="var(--s3)"/>
+        <circle cx="163.5" cy="121.1" r="3.1" fill="var(--s3)"/>
+        <circle cx="271.0" cy="66.2" r="3.1" fill="var(--s3)"/>
+        <circle cx="378.5" cy="71.7" r="3.1" fill="var(--s3)"/>
+        <text class="sl" x="387.5" y="75.7" fill="var(--s3)">15 Hz</text>
+        </svg>
+        <figcaption>Mean decoating efficiency against milling time, three frequencies, 80 % filling
+          volume and 0.8&ndash;1.0 mm media. Each point is the mean of three runs.</figcaption>
+      </figure>
+
+      <div class="kpis">
+        <div class="kpi"><b>97.5 %</b><span>best decoating efficiency, 5 Hz and 30 min</span></div>
+        <div class="kpi"><b>95.2 %</b><span>at 15 Hz and 10 min with finer media, a third of the time</span></div>
+        <div class="kpi"><b>7&ndash;12 &micro;m</b><span>median particle size x&#8325;&#8320; across all conditions</span></div>
+        <div class="kpi"><b>30&ndash;47 %</b><span>recovery efficiency, the honest weak point</span></div>
+      </div>
+      <p>Decoating passed 90 % at almost every condition, so the method works. Recovery of the active
+        material did not: it stayed between 30 and 47 %, below anything industrial, and the losses sit
+        in the separation and handling steps rather than in the milling. Long milling also drove
+        re-agglomeration, with x&#8329;&#8320; rising from 25.5 to 45.2 &micro;m between 15 and 20
+        minutes at 10 Hz. My recommendation was 15 Hz for 10 minutes with 0.4&ndash;0.6 mm media when
+        time and energy matter, 5 Hz for 25 to 30 minutes when efficiency matters most.</p>
+
+      <div class="tags"><span class="tag">Parameter study</span><span class="tag">Wet milling</span><span class="tag">Wet sieving</span><span class="tag">Filtration</span><span class="tag">Mass balance</span><span class="tag">ICP-OES</span><span class="tag">Laser diffraction</span></div>
     </div>
 
     <div class="item">
-      <h3>Mechanical process chain for battery cells, BASF cooperation project</h3>
+      <h3>Vacuum shredding and black mass processing, BASF cooperation project</h3>
       <p class="where">Research assistant, process development &middot; TU Bergakademie Freiberg, MVTAT &middot; 04/2025 &ndash; 09/2025</p>
-      <p>I ran the trial series for an industry cooperation with BASF, independently and across the
-        full mechanical chain: shredding in a Heureka 2 from No Canary, sieving and air classification
-        on J&ouml;st machines, secondary comminution in a turbo rotor mill, sample splitting on a
-        Retsch rotary splitter.</p>
-      <p>Drying time, cell type and turbo rotor speed were varied across batches of 1 to 6 kg, and I
-        compared the outcome per setting. Every run was documented to the same scheme, and I prepared
-        the measurement data in Excel so the supervising researcher could evaluate it directly, plus
-        the samples for ICP-OES and particle size analysis.</p>
-      <div class="tags"><span class="tag">Shredding</span><span class="tag">Sieving</span><span class="tag">Air classification</span><span class="tag">Sample preparation</span><span class="tag">Trial documentation</span></div>
+      <p>I ran the experimental side of a parameter study on a vacuum shredder with integrated
+        drying, part of an industry cooperation with BASF. Whole lithium-ion cells went in, black mass
+        and sorted fractions came out, and I operated every stage of that chain myself, from feeding
+        the shredder to splitting samples down to analysis size. Batches of 1 to 6 kg, around ten
+        cells over about two weeks.</p>
+
+      <div class="flow">
+        <div class="node in"><div class="n">Feed</div><div class="t">Lithium-ion cells</div><div class="s">1 to 6 kg per batch</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">01</div><div class="t">Vacuum shredding with integrated drying</div><div class="s">Heureka Zwei, No Canary; shredder and intensive mixer, solvent removed under vacuum</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">02</div><div class="t">First sieving</div><div class="s">Haver EML 450 sieve tower; fines below 1 mm are black mass</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">03</div><div class="t">Zig-zag air classification</div><div class="s">J&ouml;st LZS 10/120&times;240; casing out, light fraction on</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">04</div><div class="t">Secondary crushing</div><div class="s">Turbo rotor mill</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">05</div><div class="t">Second sieving</div><div class="s">finer cut, second black mass fraction</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">06</div><div class="t">Sample splitting</div><div class="s">Retsch PT rotary splitter, then micro splitter down to analysis size</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node out"><div class="n">Analysis</div><div class="t">Black mass</div><div class="s">ICP-OES and particle size</div></div>
+      </div>
+      <p class="vars"><b>Varied between runs:</b> drying time &middot; cell type &middot; turbo rotor
+        speed. Every run documented to the same scheme, measurement data prepared in Excel so the
+        supervising researcher could evaluate it directly. The evaluation and the thesis built on
+        these trials were theirs, the trial work was mine.</p>
+
+      <div class="tags"><span class="tag">Vacuum shredding</span><span class="tag">Drying</span><span class="tag">Sieving</span><span class="tag">Air classification</span><span class="tag">Black mass</span><span class="tag">Sample splitting</span><span class="tag">ICP-OES</span></div>
     </div>
 
     <div class="item">
@@ -183,6 +319,18 @@
       <p>I quantified material release from NMC and LFP cells under different comminution conditions,
         reaching up to 97 % released active material, and derived operating parameters for the
         crushing step from the comparison between settings.</p>
+
+      <div class="flow">
+        <div class="node in"><div class="n">Feed</div><div class="t">NMC and LFP cells</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">Variable</div><div class="t">Comminution conditions</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">Measure</div><div class="t">Material release</div><div class="s">coating off the carrier foil</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node out"><div class="n">Result</div><div class="t">Up to 97 % released</div><div class="s">operating parameters derived</div></div>
+      </div>
+
+      <div class="tags"><span class="tag">Comminution</span><span class="tag">NMC</span><span class="tag">LFP</span><span class="tag">Parameter study</span></div>
     </div>
 
     <div class="item">
@@ -190,6 +338,16 @@
       <p class="where">Project work &middot; TU Bergakademie Freiberg &middot; 10/2022 &ndash; 02/2023</p>
       <p>A calculated scale-up from lab to plant scale using similarity analysis. I determined filter
         area, rotational speed and pressure difference as the design basis for equipment selection.</p>
+
+      <div class="flow">
+        <div class="node in"><div class="n">Basis</div><div class="t">Lab filtration data</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">Method</div><div class="t">Similarity analysis</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node out"><div class="n">Design basis</div><div class="t">Filter area, speed, &Delta;p</div><div class="s">for equipment selection</div></div>
+      </div>
+      <p class="cap">Calculated, not built.</p>
+
       <div class="tags"><span class="tag">Solid&ndash;liquid separation</span><span class="tag">Equipment design</span><span class="tag">Scale-up</span></div>
     </div>
 
@@ -209,10 +367,17 @@
         Alongside that I built a project database in Excel holding the design parameters of completed
         projects.</p>
     </div>
+
+    <div class="item">
+      <h3>Inspection of manufactured parts to drawing</h3>
+      <p class="where">Intern, quality assurance &middot; IPA Private Limited, Bengaluru &middot; 04/2019 &ndash; 06/2019</p>
+      <p>I inspected manufactured parts against technical drawings by measurement and visual check,
+        and documented the results.</p>
+    </div>
   </section>
 
   <section>
-    <h2>What I bring</h2>
+    <h2 data-n="02">What I bring</h2>
     <div class="grid">
       <div>
         <h3>Process analysis and optimisation</h3>
@@ -254,7 +419,7 @@
   </section>
 
   <section>
-    <h2>Now</h2>
+    <h2 data-n="03">Now</h2>
     <div class="item">
       <h3>Seat assembly and inspection, Porsche Macan line</h3>
       <p class="where">Adient, Leipzig &middot; since 03/2026</p>
@@ -267,14 +432,12 @@
   </section>
 
   <section>
-    <h2>Education</h2>
+    <h2 data-n="04">Education</h2>
     <div class="roles">
       <div class="r"><strong>M.Sc. Mechanical and Process Engineering</strong>
         <span class="org">TU Bergakademie Freiberg</span><span class="yrs">2021 &ndash; 2025</span></div>
       <div class="r"><strong>B.Eng. Mechanical Engineering</strong>
         <span class="org">Nitte Meenakshi Institute of Technology, Bengaluru</span><span class="yrs">2016 &ndash; 2020</span></div>
-      <div class="r"><strong>Intern, quality assurance</strong>
-        <span class="org">IPA Private Limited, Bengaluru</span><span class="yrs">2019</span></div>
     </div>
     <p class="note">Master's specialisation in mechanical process engineering and mineral processing:
       particle technology, solid&ndash;liquid separation, design of process plants, project
@@ -282,7 +445,7 @@
   </section>
 
   <section class="contact">
-    <h2>Contact</h2>
+    <h2 data-n="05">Contact</h2>
     <p>Happy to talk about recycling processes, particle technology or an open role. Email is the
       fastest way to reach me. References available on request.</p>
     <div class="lines">
@@ -298,7 +461,7 @@
 </div>
 </div>
 
-<!-- ============================ DEUTSCH ============================ -->
+<!-- =========================== DEUTSCH =========================== -->
 <div data-lang="de">
 <div class="wrap">
 
@@ -316,9 +479,7 @@
           Betriebsparameter ab. Ich suche eine Stelle als Prozess- oder Projektingenieur und bin
           bundesweit umzugsbereit.</p>
       </div>
-      <figure class="portrait" style="margin:0">
-        <img src="photo.jpg" alt="Alan Tharakan">
-      </figure>
+      <figure class="portrait"><img src="photo.jpg" alt="Alan Tharakan"></figure>
     </div>
     <div class="meta">
       <span>M.Sc. Maschinenbau und Verfahrenstechnik, TU Bergakademie Freiberg</span>
@@ -327,35 +488,125 @@
   </header>
 
   <section>
-    <h2>Ausgew&auml;hlte Arbeiten</h2>
+    <h2 data-n="01">Berufserfahrung</h2>
 
     <div class="item">
-      <h3>Nassmechanische Trennung von LFP-Kathodenfolien</h3>
+      <h3>Nassmechanisches Decoating polymerbasierter Feststoffbatterie-Kathoden</h3>
       <p class="where">Masterarbeit &middot; TU Bergakademie Freiberg, Institut f&uuml;r Mechanische Verfahrenstechnik und Aufbereitungstechnik &middot; 03/2025 &ndash; 09/2025</p>
-      <p>Ziel war die R&uuml;ckgewinnung von Aktivmaterial aus LFP-Kathodenfolien auf nassmechanischem
-        Weg. Ich baute die Prozesskette im Laborma&szlig;stab auf und betrieb sie eigenst&auml;ndig:
-        Abl&ouml;sen, Nassmahlung in einer Retsch CryoMill, Nassklassierung, Filtration, Analytik.</p>
-      <p>Die Nassmahlung optimierte ich per DoE &uuml;ber vier Parameter, Mahldauer, Frequenz,
-        Mahlk&ouml;rpergr&ouml;&szlig;e und F&uuml;llgrad, in rund 100 Versuchen bei 0,3 g
-        Probenmasse. Die Ausbeute an Aktivmaterial stieg um &uuml;ber 15 %, bilanziert per
-        Massenbilanz auf Basis von ICP-OES-Messungen und gepr&uuml;ft per Partikelgr&ouml;&szlig;en&shy;analyse
-        (Laserbeugung). Die Ergebnisse habe ich im Institutskolloquium pr&auml;sentiert.</p>
-      <div class="tags"><span class="tag">DoE</span><span class="tag">Nassmahlung</span><span class="tag">Klassierung</span><span class="tag">Filtration</span><span class="tag">Massenbilanz</span><span class="tag">ICP-OES</span><span class="tag">Laserbeugung</span></div>
+      <p>Eine Parameterstudie zum Abl&ouml;sen der Beschichtung von LFP-Kathodenfolien mit
+        PEO-Festelektrolyt durch Nassmahlung in einer Schwingm&uuml;hle. F&uuml;r diese Kathoden
+        funktioniert der &uuml;bliche L&ouml;semittelweg nicht, die Frage war also, ob das
+        mechanische Decoating in Wasser &uuml;berhaupt gelingt und bei welchen Einstellungen. Ich
+        baute die Prozesskette im Labor auf und fuhr sie selbst, jede Bedingung dreifach.</p>
+
+      <div class="flow">
+        <div class="node in"><div class="n">Aufgabe</div><div class="t">SSB-Kathodenblatt</div><div class="s">LFP, PEO, LiTFSI, Ru&szlig;; St&uuml;cke 5 &times; 5 mm, ca. 0,33 g</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">01</div><div class="t">Nassmahlung</div><div class="s">Retsch CryoMill, 50-mL-Stahlbecher, ZrO&#8322;-Kugeln, destilliertes Wasser</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">02</div><div class="t">Zweistufige Nasssiebung</div><div class="s">Folien und Mahlk&ouml;rper raus, Suspension weiter</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">03</div><div class="t">Partikelgr&ouml;&szlig;e</div><div class="s">Mastersizer 3000, Laserbeugung</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">04</div><div class="t">Vakuumfiltration</div><div class="s">B&uuml;chner, 5&ndash;8 / 2&ndash;3 / 0,45 &micro;m</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node out"><div class="n">Ergebnis</div><div class="t">Kathodenaktivmaterial</div><div class="s">Filtrat per ICP-OES analysiert</div></div>
+      </div>
+      <p class="vars"><b>Variierte Parameter:</b> Frequenz 5, 10, 15 Hz &middot; Mahldauer 10 bis
+        30 min &middot; F&uuml;llgrad 70 und 80 % &middot; Mahlk&ouml;rper 0,4&ndash;0,6 und
+        0,8&ndash;1,0 mm. Decoating-Effizienz aus der Massenbilanz an der getrockneten Folie,
+        R&uuml;ckgewinnungsrate aus der Filtermasse.</p>
+
+      <figure class="fig">
+        <svg class="chart" viewBox="0 0 540 232" role="img" aria-label="Decoating-Effizienz ueber der Mahldauer">
+        <line class="grid" x1="56" y1="176.0" x2="486" y2="176.0"/>
+        <text class="ax" x="46" y="180.0" text-anchor="end">85</text>
+        <line class="grid" x1="56" y1="124.0" x2="486" y2="124.0"/>
+        <text class="ax" x="46" y="128.0" text-anchor="end">90</text>
+        <line class="grid" x1="56" y1="72.0" x2="486" y2="72.0"/>
+        <text class="ax" x="46" y="76.0" text-anchor="end">95</text>
+        <line class="grid" x1="56" y1="20.0" x2="486" y2="20.0"/>
+        <text class="ax" x="46" y="24.0" text-anchor="end">100</text>
+        <text class="ax" x="56.0" y="196" text-anchor="middle">10</text>
+        <text class="ax" x="163.5" y="196" text-anchor="middle">15</text>
+        <text class="ax" x="271.0" y="196" text-anchor="middle">20</text>
+        <text class="ax" x="378.5" y="196" text-anchor="middle">25</text>
+        <text class="ax" x="486.0" y="196" text-anchor="middle">30</text>
+        <text class="axl" x="271" y="218" text-anchor="middle">Mahldauer, min</text>
+        <text class="axl" x="14" y="98" text-anchor="middle" transform="rotate(-90 14 98)">Decoating-Effizienz, %</text>
+        <polyline points="163.5,152.4 271.0,81.3 378.5,57.6 486.0,46.4" fill="none" stroke="var(--s1)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="163.5" cy="152.4" r="3.1" fill="var(--s1)"/>
+        <circle cx="271.0" cy="81.3" r="3.1" fill="var(--s1)"/>
+        <circle cx="378.5" cy="57.6" r="3.1" fill="var(--s1)"/>
+        <circle cx="486.0" cy="46.4" r="3.1" fill="var(--s1)"/>
+        <text class="sl" x="495.0" y="50.4" fill="var(--s1)">5 Hz</text>
+        <polyline points="163.5,78.3 271.0,109.0 378.5,96.6" fill="none" stroke="var(--s2)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="163.5" cy="78.3" r="3.1" fill="var(--s2)"/>
+        <circle cx="271.0" cy="109.0" r="3.1" fill="var(--s2)"/>
+        <circle cx="378.5" cy="96.6" r="3.1" fill="var(--s2)"/>
+        <text class="sl" x="387.5" y="100.6" fill="var(--s2)">10 Hz</text>
+        <polyline points="56.0,133.4 163.5,121.1 271.0,66.2 378.5,71.7" fill="none" stroke="var(--s3)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="56.0" cy="133.4" r="3.1" fill="var(--s3)"/>
+        <circle cx="163.5" cy="121.1" r="3.1" fill="var(--s3)"/>
+        <circle cx="271.0" cy="66.2" r="3.1" fill="var(--s3)"/>
+        <circle cx="378.5" cy="71.7" r="3.1" fill="var(--s3)"/>
+        <text class="sl" x="387.5" y="75.7" fill="var(--s3)">15 Hz</text>
+        </svg>
+        <figcaption>Mittlere Decoating-Effizienz &uuml;ber der Mahldauer, drei Frequenzen, 80 %
+          F&uuml;llgrad und 0,8&ndash;1,0 mm Mahlk&ouml;rper. Jeder Punkt ist der Mittelwert aus drei
+          Versuchen.</figcaption>
+      </figure>
+
+      <div class="kpis">
+        <div class="kpi"><b>97,5 %</b><span>beste Decoating-Effizienz, 5 Hz und 30 min</span></div>
+        <div class="kpi"><b>95,2 %</b><span>bei 15 Hz und 10 min mit feineren Mahlk&ouml;rpern, ein Drittel der Zeit</span></div>
+        <div class="kpi"><b>7&ndash;12 &micro;m</b><span>mittlere Partikelgr&ouml;&szlig;e x&#8325;&#8320; &uuml;ber alle Bedingungen</span></div>
+        <div class="kpi"><b>30&ndash;47 %</b><span>R&uuml;ckgewinnungsrate, der ehrliche Schwachpunkt</span></div>
+      </div>
+      <p>Das Decoating lag bei fast allen Bedingungen &uuml;ber 90 %, das Verfahren funktioniert
+        also. Die R&uuml;ckgewinnung des Aktivmaterials nicht: sie blieb zwischen 30 und 47 %, unter
+        jedem industriellen Ma&szlig;stab, und die Verluste liegen in Trennung und Handling, nicht in
+        der Mahlung. Lange Mahldauern f&uuml;hrten zudem zur Reagglomeration, x&#8329;&#8320; stieg
+        bei 10 Hz zwischen 15 und 20 Minuten von 25,5 auf 45,2 &micro;m. Meine Empfehlung: 15 Hz und
+        10 min mit 0,4&ndash;0,6 mm Mahlk&ouml;rpern, wenn Zeit und Energie z&auml;hlen, 5 Hz und 25
+        bis 30 min, wenn die Effizienz Vorrang hat.</p>
+
+      <div class="tags"><span class="tag">Parameterstudie</span><span class="tag">Nassmahlung</span><span class="tag">Nasssiebung</span><span class="tag">Filtration</span><span class="tag">Massenbilanz</span><span class="tag">ICP-OES</span><span class="tag">Laserbeugung</span></div>
     </div>
 
     <div class="item">
-      <h3>Mechanische Prozesskette an Batteriezellen, Industriekooperation mit BASF</h3>
+      <h3>Vakuumschreddern und Schwarzmasse-Aufbereitung, Industriekooperation mit BASF</h3>
       <p class="where">Studentische Hilfskraft, Verfahrensentwicklung &middot; TU Bergakademie Freiberg, MVTAT &middot; 04/2025 &ndash; 09/2025</p>
-      <p>Ich fuhr die Versuchsreihen einer Industriekooperation mit BASF eigenst&auml;ndig &uuml;ber
-        die gesamte mechanische Prozesskette: Schreddern im Heureka 2 von No Canary, Siebung und
-        Sichtung auf J&ouml;st-Maschinen, Nachzerkleinerung in der Turborotorm&uuml;hle,
-        Probenteilung im Retsch PT.</p>
-      <p>Trocknungszeit, Zelltyp und Drehzahl der Turborotorm&uuml;hle variierte ich bei Chargen von
-        1 bis 6 kg und verglich das Ergebnis je Einstellung. Jeden Versuchslauf dokumentierte ich nach
-        einheitlichem Schema und bereitete die Messdaten in Excel so auf, dass der betreuende
-        Wissenschaftler direkt auswerten konnte. Die Proben pr&auml;parierte ich f&uuml;r ICP-OES und
-        Partikelgr&ouml;&szlig;enanalyse.</p>
-      <div class="tags"><span class="tag">Schreddern</span><span class="tag">Siebung</span><span class="tag">Sichtung</span><span class="tag">Probenvorbereitung</span><span class="tag">Versuchsdokumentation</span></div>
+      <p>Ich fuhr den experimentellen Teil einer Parameterstudie an einem Vakuumschredder mit
+        integrierter Trocknung, Teil einer Industriekooperation mit BASF. Hinein gingen ganze
+        Lithium-Ionen-Zellen, heraus kamen Schwarzmasse und sortierte Fraktionen. Jede Stufe dieser
+        Kette habe ich selbst bedient, vom Beschicken des Schredders bis zur Probenteilung auf
+        Analysenmenge. Chargen von 1 bis 6 kg, rund zehn Zellen in etwa zwei Wochen.</p>
+
+      <div class="flow">
+        <div class="node in"><div class="n">Aufgabe</div><div class="t">Lithium-Ionen-Zellen</div><div class="s">1 bis 6 kg je Charge</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">01</div><div class="t">Vakuumschreddern mit integrierter Trocknung</div><div class="s">Heureka Zwei, No Canary; Schredder und Intensivmischer, L&ouml;semittel unter Vakuum ausgetrieben</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">02</div><div class="t">Erste Siebung</div><div class="s">Siebturm Haver EML 450; Feingut unter 1 mm ist Schwarzmasse</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">03</div><div class="t">Zickzack-Sichtung</div><div class="s">J&ouml;st LZS 10/120&times;240; Geh&auml;useteile raus, Leichtgut weiter</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">04</div><div class="t">Nachzerkleinerung</div><div class="s">Turborotorm&uuml;hle</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">05</div><div class="t">Zweite Siebung</div><div class="s">feinerer Schnitt, zweite Schwarzmassefraktion</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">06</div><div class="t">Probenteilung</div><div class="s">Retsch PT Rotationsteiler, danach Mikroteiler auf Analysenmenge</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node out"><div class="n">Analytik</div><div class="t">Schwarzmasse</div><div class="s">ICP-OES und Partikelgr&ouml;&szlig;e</div></div>
+      </div>
+      <p class="vars"><b>Variiert zwischen den L&auml;ufen:</b> Trocknungszeit &middot; Zelltyp
+        &middot; Drehzahl der Turborotorm&uuml;hle. Jeder Lauf nach einheitlichem Schema
+        dokumentiert, die Messdaten in Excel so aufbereitet, dass der betreuende Wissenschaftler
+        direkt auswerten konnte. Auswertung und Abschlussarbeit auf Basis dieser Versuche lagen bei
+        ihm, die Versuchsarbeit bei mir.</p>
+
+      <div class="tags"><span class="tag">Vakuumschreddern</span><span class="tag">Trocknung</span><span class="tag">Siebung</span><span class="tag">Sichtung</span><span class="tag">Schwarzmasse</span><span class="tag">Probenteilung</span><span class="tag">ICP-OES</span></div>
     </div>
 
     <div class="item">
@@ -364,6 +615,18 @@
       <p>Ich quantifizierte die Materialfreisetzung von NMC- und LFP-Zellen unter verschiedenen
         Zerkleinerungsbedingungen, mit bis zu 97 % freigesetztem Aktivmaterial, und leitete aus dem
         Vergleich der Versuchsbedingungen Betriebsparameter f&uuml;r die Zerkleinerung ab.</p>
+
+      <div class="flow">
+        <div class="node in"><div class="n">Aufgabe</div><div class="t">NMC- und LFP-Zellen</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">Variable</div><div class="t">Zerkleinerungs&shy;bedingungen</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">Messgr&ouml;&szlig;e</div><div class="t">Materialfreisetzung</div><div class="s">Beschichtung von der Tr&auml;gerfolie</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node out"><div class="n">Ergebnis</div><div class="t">bis zu 97 % freigesetzt</div><div class="s">Betriebsparameter abgeleitet</div></div>
+      </div>
+
+      <div class="tags"><span class="tag">Zerkleinerung</span><span class="tag">NMC</span><span class="tag">LFP</span><span class="tag">Parameterstudie</span></div>
     </div>
 
     <div class="item">
@@ -372,6 +635,16 @@
       <p>Rechnerischer Scale-up per &Auml;hnlichkeitsbetrachtung vom Labor- auf den
         Anlagenma&szlig;stab. Ich ermittelte Filterfl&auml;che, Drehzahl und Druckdifferenz als
         Auslegungsgrundlage f&uuml;r die Apparateauswahl.</p>
+
+      <div class="flow">
+        <div class="node in"><div class="n">Basis</div><div class="t">Filtrationsdaten im Labor</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">Methode</div><div class="t">&Auml;hnlichkeits&shy;betrachtung</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node out"><div class="n">Auslegung</div><div class="t">Filterfl&auml;che, Drehzahl, &Delta;p</div><div class="s">Grundlage f&uuml;r die Apparateauswahl</div></div>
+      </div>
+      <p class="cap">Rechnerisch, nicht gebaut.</p>
+
       <div class="tags"><span class="tag">Fest-Fl&uuml;ssig-Trennung</span><span class="tag">Apparateauslegung</span><span class="tag">Scale-up</span></div>
     </div>
 
@@ -392,10 +665,17 @@
         Projektdatenbank in Excel auf und erfasste die Auslegungskennwerte abgeschlossener
         Projekte.</p>
     </div>
+
+    <div class="item">
+      <h3>Pr&uuml;fung von Fertigungsteilen nach Zeichnung</h3>
+      <p class="where">Praktikant Qualit&auml;tssicherung &middot; IPA Private Limited, Bengaluru &middot; 04/2019 &ndash; 06/2019</p>
+      <p>Ich pr&uuml;fte Fertigungsteile nach technischer Zeichnung per Ma&szlig;- und
+        Sichtpr&uuml;fung und dokumentierte die Ergebnisse.</p>
+    </div>
   </section>
 
   <section>
-    <h2>Fachkompetenzen</h2>
+    <h2 data-n="02">Fachkompetenzen</h2>
     <div class="grid">
       <div>
         <h3>Prozessanalyse und Optimierung</h3>
@@ -437,7 +717,7 @@
   </section>
 
   <section>
-    <h2>Aktuell</h2>
+    <h2 data-n="03">Aktuell</h2>
     <div class="item">
       <h3>Sitzmontage und Pr&uuml;fung, Porsche Macan</h3>
       <p class="where">Adient, Leipzig &middot; seit 03/2026</p>
@@ -450,14 +730,12 @@
   </section>
 
   <section>
-    <h2>Studium</h2>
+    <h2 data-n="04">Studium</h2>
     <div class="roles">
       <div class="r"><strong>M.Sc. Maschinenbau und Verfahrenstechnik</strong>
         <span class="org">TU Bergakademie Freiberg</span><span class="yrs">2021 &ndash; 2025</span></div>
       <div class="r"><strong>B.Eng. Maschinenbau</strong>
         <span class="org">Nitte Meenakshi Institute of Technology, Bengaluru</span><span class="yrs">2016 &ndash; 2020</span></div>
-      <div class="r"><strong>Praktikant Qualit&auml;tssicherung</strong>
-        <span class="org">IPA Private Limited, Bengaluru</span><span class="yrs">2019</span></div>
     </div>
     <p class="note">Vertiefung Mechanische Verfahrenstechnik und Aufbereitungstechnik. Schwerpunkte:
       Partikeltechnik, Fest-Fl&uuml;ssig-Trennung, Konzeption von Prozessanlagen,
@@ -465,7 +743,7 @@
   </section>
 
   <section class="contact">
-    <h2>Kontakt</h2>
+    <h2 data-n="05">Kontakt</h2>
     <p>Ich spreche gern &uuml;ber Recyclingprozesse, Partikeltechnik oder eine offene Stelle. Am
       schnellsten erreichen Sie mich per E-Mail. Referenzen auf Anfrage.</p>
     <div class="lines">
@@ -501,6 +779,10 @@
       l = (navigator.language || '').toLowerCase().indexOf('de') === 0 ? 'de' : 'en';
     }
     setLang(l);
+    var bar = document.getElementById('bar');
+    var onScroll = function(){ bar.classList.toggle('stuck', window.scrollY > 40); };
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
   })();
 </script>
 </body>
