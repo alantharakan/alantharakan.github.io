@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alan Tharakan | Process Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f4f0; --ink:#1b1c1a; --muted:#5f625c;
+    --line:#dedad1; --accent:#2f5d50; --accent-soft:#e7ede9;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#131413; --ink:#ecebe6; --muted:#a3a7a1;
+           --line:#2c2e2b; --accent:#90c4b2; --accent-soft:#1d2824; }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:Inter,system-ui,sans-serif; font-size:17px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:780px; margin:0 auto; padding:0 28px}
+  a{color:var(--accent); text-decoration:none;
+    border-bottom:1px solid color-mix(in srgb, var(--accent) 35%, transparent)}
+  a:hover{border-bottom-color:var(--accent)}
+
+  /* language switch */
+  .switch{position:sticky; top:0; z-index:20; background:
+     linear-gradient(to bottom, var(--bg) 70%, transparent);
+     padding:16px 0 10px}
+  .switch .inner{max-width:780px; margin:0 auto; padding:0 28px;
+     display:flex; justify-content:flex-end; gap:6px}
+  .switch button{
+    font:inherit; font-size:12.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--muted); background:none; border:1px solid var(--line);
+    border-radius:999px; padding:5px 13px; cursor:pointer; transition:.15s}
+  .switch button:hover{color:var(--ink)}
+  .switch button[aria-pressed="true"]{color:var(--accent); background:var(--accent-soft);
+    border-color:color-mix(in srgb, var(--accent) 30%, transparent)}
+
+  header{padding:34px 0 56px}
+  .hero{display:flex; gap:38px; align-items:flex-start}
+  .hero .text{flex:1 1 auto; min-width:0}
+  .portrait{flex:0 0 168px; width:168px}
+  .portrait img{width:100%; height:auto; display:block; border-radius:3px;
+    filter:saturate(.92) contrast(1.02)}
+  .portrait figcaption{font-size:12.5px; color:var(--muted); margin-top:10px; line-height:1.45}
+
+  .eyebrow{font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0 0 16px}
+  h1{font-family:Newsreader,Georgia,serif; font-weight:500; font-size:clamp(36px,6.4vw,54px);
+     line-height:1.08; letter-spacing:-.015em; margin:0 0 8px}
+  .role{font-family:Newsreader,Georgia,serif; font-style:italic; font-size:clamp(18px,3.2vw,23px);
+        color:var(--muted); margin:0 0 26px}
+  .lede{font-size:18.5px; max-width:58ch; margin:0 0 14px}
+  .meta{display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:24px; font-size:14.5px; color:var(--muted)}
+
+  section{padding:46px 0; border-top:1px solid var(--line)}
+  h2{font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
+     font-weight:600; margin:0 0 30px}
+
+  .item{margin-bottom:38px}
+  .item:last-child{margin-bottom:0}
+  .item h3{font-family:Newsreader,Georgia,serif; font-weight:500; font-size:22px; line-height:1.3; margin:0 0 4px}
+  .where{font-size:14.5px; color:var(--muted); margin:0 0 14px}
+  .item p{margin:0 0 12px; max-width:64ch}
+  .item p:last-child{margin-bottom:0}
+
+  ul.plain{list-style:none; padding:0; margin:0}
+  ul.plain li{padding-left:18px; position:relative; margin-bottom:8px; max-width:64ch}
+  ul.plain li::before{content:""; position:absolute; left:0; top:.72em; width:7px; height:1px; background:var(--muted)}
+
+  .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px}
+  .tag{font-size:13px; color:var(--accent); background:var(--accent-soft);
+       border-radius:999px; padding:4px 11px; line-height:1.5}
+
+  .grid{display:grid; gap:30px; grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+  .grid h3{font-size:16px; font-family:Inter,sans-serif; font-weight:600; margin:0 0 10px}
+  .grid li{font-size:15.5px; color:var(--muted)}
+
+  .roles .r{display:flex; flex-wrap:wrap; gap:4px 14px; align-items:baseline;
+            padding:14px 0; border-bottom:1px solid var(--line)}
+  .roles .r:last-child{border-bottom:none}
+  .roles .r strong{font-weight:500; font-size:16.5px}
+  .roles .r span.org{color:var(--muted); font-size:15px; flex:1 1 auto}
+  .roles .r span.yrs{color:var(--muted); font-size:14px; font-variant-numeric:tabular-nums}
+  .note{margin-top:20px; color:var(--muted); font-size:15.5px; max-width:64ch}
+
+  .contact p{max-width:58ch}
+  .lines{margin-top:18px; font-size:16px}
+  .lines div{margin-bottom:8px}
+  .k{display:inline-block; min-width:104px; color:var(--muted); font-size:14.5px}
+
+  footer{padding:40px 0 70px; font-size:13.5px; color:var(--muted); border-top:1px solid var(--line)}
+
+  [data-lang]{display:none}
+  [data-lang].on{display:block}
+
+  @media (max-width:640px){
+    body{font-size:16.5px}
+    .hero{flex-direction:column-reverse; gap:26px}
+    .portrait{flex:0 0 auto; width:132px}
+    header{padding:22px 0 40px}
+    .lede{font-size:17.5px}
+    .k{min-width:88px; display:block}
+  }
+</style>
+</head>
+<body>
+
+<div class="switch">
+  <div class="inner">
+    <button id="btn-de" aria-pressed="false" onclick="setLang('de')">Deutsch</button>
+    <button id="btn-en" aria-pressed="true" onclick="setLang('en')">English</button>
+  </div>
+</div>
+
+<!-- ============================ ENGLISH ============================ -->
+<div data-lang="en" class="on">
+<div class="wrap">
+
+  <header>
+    <div class="hero">
+      <div class="text">
+        <p class="eyebrow">Leipzig, Germany</p>
+        <h1>Alan Tharakan</h1>
+        <p class="role">Process engineer, particle technology and battery recycling</p>
+        <p class="lede">I work on the mechanical side of recycling: comminution, sieving,
+          classification and solid&ndash;liquid separation. Most of my hands-on time has gone into
+          lithium-ion battery material, from shredding whole cells to recovering active material from
+          cathode foils.</p>
+        <p class="lede">I plan trial series, run them myself on the machines, and turn the results
+          into operating parameters. I am looking for a process or project engineering role and can
+          relocate anywhere in Germany.</p>
+      </div>
+      <figure class="portrait" style="margin:0">
+        <img src="photo.jpg" alt="Alan Tharakan">
+      </figure>
+    </div>
+    <div class="meta">
+      <span>M.Sc. Mechanical and Process Engineering, TU Bergakademie Freiberg</span>
+      <span>German B2 &middot; English C1 &middot; Malayalam</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>Selected work</h2>
+
+    <div class="item">
+      <h3>Wet-mechanical separation of LFP cathode foils</h3>
+      <p class="where">Master's thesis &middot; TU Bergakademie Freiberg, Institute of Mechanical Process Engineering and Mineral Processing &middot; 03/2025 &ndash; 09/2025</p>
+      <p>The task was to recover active material from LFP cathode foils on a wet-mechanical route. I
+        set up the whole process chain in the lab and ran it myself: detachment, wet milling in a
+        Retsch CryoMill, wet classification, filtration, then analysis.</p>
+      <p>I optimised the milling step with a design of experiments across four parameters, milling
+        time, frequency, grinding media size and filling degree, over roughly 100 trials at 0.3 g
+        sample mass. Active material yield improved by more than 15 %, closed out with a mass balance
+        from ICP-OES measurements and cross-checked by laser diffraction. I presented the results at
+        the institute colloquium.</p>
+      <div class="tags"><span class="tag">DoE</span><span class="tag">Wet milling</span><span class="tag">Classification</span><span class="tag">Filtration</span><span class="tag">Mass balance</span><span class="tag">ICP-OES</span><span class="tag">Laser diffraction</span></div>
+    </div>
+
+    <div class="item">
+      <h3>Mechanical process chain for battery cells, BASF cooperation project</h3>
+      <p class="where">Research assistant, process development &middot; TU Bergakademie Freiberg, MVTAT &middot; 04/2025 &ndash; 09/2025</p>
+      <p>I ran the trial series for an industry cooperation with BASF, independently and across the
+        full mechanical chain: shredding in a Heureka 2 from No Canary, sieving and air classification
+        on J&ouml;st machines, secondary comminution in a turbo rotor mill, sample splitting on a
+        Retsch rotary splitter.</p>
+      <p>Drying time, cell type and turbo rotor speed were varied across batches of 1 to 6 kg, and I
+        compared the outcome per setting. Every run was documented to the same scheme, and I prepared
+        the measurement data in Excel so the supervising researcher could evaluate it directly, plus
+        the samples for ICP-OES and particle size analysis.</p>
+      <div class="tags"><span class="tag">Shredding</span><span class="tag">Sieving</span><span class="tag">Air classification</span><span class="tag">Sample preparation</span><span class="tag">Trial documentation</span></div>
+    </div>
+
+    <div class="item">
+      <h3>Comminution in lithium-ion battery recycling</h3>
+      <p class="where">Project work &middot; TU Bergakademie Freiberg &middot; 04/2022 &ndash; 09/2022</p>
+      <p>I quantified material release from NMC and LFP cells under different comminution conditions,
+        reaching up to 97 % released active material, and derived operating parameters for the
+        crushing step from the comparison between settings.</p>
+    </div>
+
+    <div class="item">
+      <h3>Scale-up of a rotary drum filter</h3>
+      <p class="where">Project work &middot; TU Bergakademie Freiberg &middot; 10/2022 &ndash; 02/2023</p>
+      <p>A calculated scale-up from lab to plant scale using similarity analysis. I determined filter
+        area, rotational speed and pressure difference as the design basis for equipment selection.</p>
+      <div class="tags"><span class="tag">Solid&ndash;liquid separation</span><span class="tag">Equipment design</span><span class="tag">Scale-up</span></div>
+    </div>
+
+    <div class="item">
+      <h3>Sorting and classification trials on secondary raw materials</h3>
+      <p class="where">Research assistant, battery recycling &middot; TU Bergakademie Freiberg &middot; 01/2023 &ndash; 03/2024</p>
+      <p>Sorting, sieving and classification experiments on secondary raw materials from battery
+        recycling, and the trial data collection behind them. This is the work that got me into
+        recycling in the first place.</p>
+    </div>
+
+    <div class="item">
+      <h3>Plant documentation and a project database in a planning office</h3>
+      <p class="where">Intern, process engineering &middot; Conveying Engineering &amp; Consulting GmbH, Leipzig &middot; 04/2024 &ndash; 06/2024</p>
+      <p>I checked drawings and plant documentation from bulk solids handling projects for
+        completeness and contradictions, and reported every deviation back to the responsible planner.
+        Alongside that I built a project database in Excel holding the design parameters of completed
+        projects.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What I bring</h2>
+    <div class="grid">
+      <div>
+        <h3>Process analysis and optimisation</h3>
+        <ul class="plain">
+          <li>Planning and running trial series</li>
+          <li>Comparing process parameters with DoE</li>
+          <li>Mass balances</li>
+          <li>Deriving operating parameters</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Processing and plant technology</h3>
+        <ul class="plain">
+          <li>Shredding, comminution, sieving, air classification</li>
+          <li>Wet milling, classification, solid&ndash;liquid separation</li>
+          <li>Industrial shredders, screens, mills, filters</li>
+          <li>Equipment design and scale-up</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Quality and lab</h3>
+        <ul class="plain">
+          <li>Inspection to written instruction, deviation reporting</li>
+          <li>Sample preparation and splitting</li>
+          <li>Particle size analysis, samples for ICP-OES</li>
+          <li>Handling lithium-ion cells</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Tools</h3>
+        <ul class="plain">
+          <li>Excel, PowerPoint</li>
+          <li>OriginPro</li>
+          <li>Autodesk Inventor</li>
+          <li>Python, basics</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Now</h2>
+    <div class="item">
+      <h3>Seat assembly and inspection, Porsche Macan line</h3>
+      <p class="where">Adient, Leipzig &middot; since 03/2026</p>
+      <p>I inspect seat systems on a just-in-sequence line at the Porsche plant in Leipzig, working to
+        written inspection instructions and reporting deviations to shift management and the quality
+        department. Shift work in cycle-bound series production, with fixed quality and safety rules.
+        It is not process engineering, but it has taught me what a tolerance and a deviation mean when
+        the line is running and the customer is waiting.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <div class="roles">
+      <div class="r"><strong>M.Sc. Mechanical and Process Engineering</strong>
+        <span class="org">TU Bergakademie Freiberg</span><span class="yrs">2021 &ndash; 2025</span></div>
+      <div class="r"><strong>B.Eng. Mechanical Engineering</strong>
+        <span class="org">Nitte Meenakshi Institute of Technology, Bengaluru</span><span class="yrs">2016 &ndash; 2020</span></div>
+      <div class="r"><strong>Intern, quality assurance</strong>
+        <span class="org">IPA Private Limited, Bengaluru</span><span class="yrs">2019</span></div>
+    </div>
+    <p class="note">Master's specialisation in mechanical process engineering and mineral processing:
+      particle technology, solid&ndash;liquid separation, design of process plants, project
+      management.</p>
+  </section>
+
+  <section class="contact">
+    <h2>Contact</h2>
+    <p>Happy to talk about recycling processes, particle technology or an open role. Email is the
+      fastest way to reach me. References available on request.</p>
+    <div class="lines">
+      <div><span class="k">Email</span> <a href="mailto:alantharakan8@gmail.com">alantharakan8@gmail.com</a></div>
+      <div><span class="k">Phone</span> <a href="tel:+4915223758228">+49 152 2375 8228</a></div>
+      <div><span class="k">LinkedIn</span> <a href="https://www.linkedin.com/in/alan-tharakan-6b4303174">linkedin.com/in/alan-tharakan</a></div>
+      <div><span class="k">Based in</span> Leipzig, open to relocation</div>
+    </div>
+  </section>
+
+  <footer><p>Alan Tharakan &middot; Process engineer &middot; Leipzig</p></footer>
+
+</div>
+</div>
+
+<!-- ============================ DEUTSCH ============================ -->
+<div data-lang="de">
+<div class="wrap">
+
+  <header>
+    <div class="hero">
+      <div class="text">
+        <p class="eyebrow">Leipzig</p>
+        <h1>Alan Tharakan</h1>
+        <p class="role">Verfahrensingenieur, Partikeltechnik und Batterierecycling</p>
+        <p class="lede">Ich arbeite an der mechanischen Seite des Recyclings: Zerkleinerung, Siebung,
+          Sichtung, Klassierung und Fest-Fl&uuml;ssig-Trennung. Den gr&ouml;&szlig;ten Teil meiner
+          praktischen Arbeit habe ich an Lithium-Ionen-Batteriematerial verbracht, vom Schreddern
+          ganzer Zellen bis zur R&uuml;ckgewinnung von Aktivmaterial aus Kathodenfolien.</p>
+        <p class="lede">Ich plane Versuchsreihen, fahre sie selbst an den Maschinen und leite daraus
+          Betriebsparameter ab. Ich suche eine Stelle als Prozess- oder Projektingenieur und bin
+          bundesweit umzugsbereit.</p>
+      </div>
+      <figure class="portrait" style="margin:0">
+        <img src="photo.jpg" alt="Alan Tharakan">
+      </figure>
+    </div>
+    <div class="meta">
+      <span>M.Sc. Maschinenbau und Verfahrenstechnik, TU Bergakademie Freiberg</span>
+      <span>Deutsch B2 &middot; Englisch C1 &middot; Malayalam</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>Ausgew&auml;hlte Arbeiten</h2>
+
+    <div class="item">
+      <h3>Nassmechanische Trennung von LFP-Kathodenfolien</h3>
+      <p class="where">Masterarbeit &middot; TU Bergakademie Freiberg, Institut f&uuml;r Mechanische Verfahrenstechnik und Aufbereitungstechnik &middot; 03/2025 &ndash; 09/2025</p>
+      <p>Ziel war die R&uuml;ckgewinnung von Aktivmaterial aus LFP-Kathodenfolien auf nassmechanischem
+        Weg. Ich baute die Prozesskette im Laborma&szlig;stab auf und betrieb sie eigenst&auml;ndig:
+        Abl&ouml;sen, Nassmahlung in einer Retsch CryoMill, Nassklassierung, Filtration, Analytik.</p>
+      <p>Die Nassmahlung optimierte ich per DoE &uuml;ber vier Parameter, Mahldauer, Frequenz,
+        Mahlk&ouml;rpergr&ouml;&szlig;e und F&uuml;llgrad, in rund 100 Versuchen bei 0,3 g
+        Probenmasse. Die Ausbeute an Aktivmaterial stieg um &uuml;ber 15 %, bilanziert per
+        Massenbilanz auf Basis von ICP-OES-Messungen und gepr&uuml;ft per Partikelgr&ouml;&szlig;en&shy;analyse
+        (Laserbeugung). Die Ergebnisse habe ich im Institutskolloquium pr&auml;sentiert.</p>
+      <div class="tags"><span class="tag">DoE</span><span class="tag">Nassmahlung</span><span class="tag">Klassierung</span><span class="tag">Filtration</span><span class="tag">Massenbilanz</span><span class="tag">ICP-OES</span><span class="tag">Laserbeugung</span></div>
+    </div>
+
+    <div class="item">
+      <h3>Mechanische Prozesskette an Batteriezellen, Industriekooperation mit BASF</h3>
+      <p class="where">Studentische Hilfskraft, Verfahrensentwicklung &middot; TU Bergakademie Freiberg, MVTAT &middot; 04/2025 &ndash; 09/2025</p>
+      <p>Ich fuhr die Versuchsreihen einer Industriekooperation mit BASF eigenst&auml;ndig &uuml;ber
+        die gesamte mechanische Prozesskette: Schreddern im Heureka 2 von No Canary, Siebung und
+        Sichtung auf J&ouml;st-Maschinen, Nachzerkleinerung in der Turborotorm&uuml;hle,
+        Probenteilung im Retsch PT.</p>
+      <p>Trocknungszeit, Zelltyp und Drehzahl der Turborotorm&uuml;hle variierte ich bei Chargen von
+        1 bis 6 kg und verglich das Ergebnis je Einstellung. Jeden Versuchslauf dokumentierte ich nach
+        einheitlichem Schema und bereitete die Messdaten in Excel so auf, dass der betreuende
+        Wissenschaftler direkt auswerten konnte. Die Proben pr&auml;parierte ich f&uuml;r ICP-OES und
+        Partikelgr&ouml;&szlig;enanalyse.</p>
+      <div class="tags"><span class="tag">Schreddern</span><span class="tag">Siebung</span><span class="tag">Sichtung</span><span class="tag">Probenvorbereitung</span><span class="tag">Versuchsdokumentation</span></div>
+    </div>
+
+    <div class="item">
+      <h3>Zerkleinerung im Lithium-Ionen-Batterie-Recycling</h3>
+      <p class="where">Projektarbeit &middot; TU Bergakademie Freiberg &middot; 04/2022 &ndash; 09/2022</p>
+      <p>Ich quantifizierte die Materialfreisetzung von NMC- und LFP-Zellen unter verschiedenen
+        Zerkleinerungsbedingungen, mit bis zu 97 % freigesetztem Aktivmaterial, und leitete aus dem
+        Vergleich der Versuchsbedingungen Betriebsparameter f&uuml;r die Zerkleinerung ab.</p>
+    </div>
+
+    <div class="item">
+      <h3>Scale-up eines Drehtrommelfilters</h3>
+      <p class="where">Projektarbeit &middot; TU Bergakademie Freiberg &middot; 10/2022 &ndash; 02/2023</p>
+      <p>Rechnerischer Scale-up per &Auml;hnlichkeitsbetrachtung vom Labor- auf den
+        Anlagenma&szlig;stab. Ich ermittelte Filterfl&auml;che, Drehzahl und Druckdifferenz als
+        Auslegungsgrundlage f&uuml;r die Apparateauswahl.</p>
+      <div class="tags"><span class="tag">Fest-Fl&uuml;ssig-Trennung</span><span class="tag">Apparateauslegung</span><span class="tag">Scale-up</span></div>
+    </div>
+
+    <div class="item">
+      <h3>Sortier- und Klassierversuche an Sekund&auml;rrohstoffen</h3>
+      <p class="where">Studentische Hilfskraft, Batterierecycling &middot; TU Bergakademie Freiberg &middot; 01/2023 &ndash; 03/2024</p>
+      <p>Sortier-, Sieb- und Klassierversuche an Sekund&auml;rrohstoffen aus dem Batterierecycling,
+        dazu die Erfassung der Versuchsdaten f&uuml;r die Auswertung am Institut. Mit dieser Arbeit
+        bin ich zum Recycling gekommen.</p>
+    </div>
+
+    <div class="item">
+      <h3>Anlagenunterlagen und Projektdatenbank im Ingenieurb&uuml;ro</h3>
+      <p class="where">Praktikant Verfahrenstechnik &middot; Conveying Engineering &amp; Consulting GmbH, Leipzig &middot; 04/2024 &ndash; 06/2024</p>
+      <p>Ich pr&uuml;fte Zeichnungen und Anlagenunterlagen aus Projekten der
+        Sch&uuml;ttgutf&ouml;rdertechnik auf Vollst&auml;ndigkeit und Widerspr&uuml;che und meldete
+        jede Abweichung an den zust&auml;ndigen Planer zur&uuml;ck. Parallel baute ich eine
+        Projektdatenbank in Excel auf und erfasste die Auslegungskennwerte abgeschlossener
+        Projekte.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Fachkompetenzen</h2>
+    <div class="grid">
+      <div>
+        <h3>Prozessanalyse und Optimierung</h3>
+        <ul class="plain">
+          <li>Versuchsreihen planen und fahren</li>
+          <li>Prozessparameter per DoE vergleichen</li>
+          <li>Massenbilanzen</li>
+          <li>Betriebsparameter ableiten</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Aufbereitung und Anlagentechnik</h3>
+        <ul class="plain">
+          <li>Schreddern, Zerkleinerung, Siebung, Sichtung</li>
+          <li>Nassmahlung, Klassierung, Fest-Fl&uuml;ssig-Trennung</li>
+          <li>Industrieschredder, Sieb- und Sichtmaschinen, M&uuml;hlen, Filter</li>
+          <li>Apparateauslegung und Scale-up</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Qualit&auml;t und Labor</h3>
+        <ul class="plain">
+          <li>Pr&uuml;fung nach Pr&uuml;fanweisung, Abweichungsmeldung</li>
+          <li>Probenvorbereitung und -teilung</li>
+          <li>Partikelgr&ouml;&szlig;enanalyse, Proben f&uuml;r ICP-OES</li>
+          <li>Umgang mit Lithium-Ionen-Zellen</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Software</h3>
+        <ul class="plain">
+          <li>Excel, PowerPoint</li>
+          <li>OriginPro</li>
+          <li>Autodesk Inventor</li>
+          <li>Python, Grundkenntnisse</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Aktuell</h2>
+    <div class="item">
+      <h3>Sitzmontage und Pr&uuml;fung, Porsche Macan</h3>
+      <p class="where">Adient, Leipzig &middot; seit 03/2026</p>
+      <p>Ich pr&uuml;fe Sitzsysteme an einer Just-in-Sequence-Linie im Porsche Werk Leipzig nach
+        Pr&uuml;fanweisung und melde Abweichungen an Schichtf&uuml;hrung und Qualit&auml;tsstelle.
+        Schichtbetrieb in taktgebundener Serienfertigung mit festen Qualit&auml;ts- und
+        Sicherheitsvorgaben. Das ist keine Verfahrenstechnik, aber ich habe dort gelernt, was eine
+        Toleranz und eine Abweichung bedeuten, wenn die Linie l&auml;uft und der Kunde wartet.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Studium</h2>
+    <div class="roles">
+      <div class="r"><strong>M.Sc. Maschinenbau und Verfahrenstechnik</strong>
+        <span class="org">TU Bergakademie Freiberg</span><span class="yrs">2021 &ndash; 2025</span></div>
+      <div class="r"><strong>B.Eng. Maschinenbau</strong>
+        <span class="org">Nitte Meenakshi Institute of Technology, Bengaluru</span><span class="yrs">2016 &ndash; 2020</span></div>
+      <div class="r"><strong>Praktikant Qualit&auml;tssicherung</strong>
+        <span class="org">IPA Private Limited, Bengaluru</span><span class="yrs">2019</span></div>
+    </div>
+    <p class="note">Vertiefung Mechanische Verfahrenstechnik und Aufbereitungstechnik. Schwerpunkte:
+      Partikeltechnik, Fest-Fl&uuml;ssig-Trennung, Konzeption von Prozessanlagen,
+      Projektmanagement.</p>
+  </section>
+
+  <section class="contact">
+    <h2>Kontakt</h2>
+    <p>Ich spreche gern &uuml;ber Recyclingprozesse, Partikeltechnik oder eine offene Stelle. Am
+      schnellsten erreichen Sie mich per E-Mail. Referenzen auf Anfrage.</p>
+    <div class="lines">
+      <div><span class="k">E-Mail</span> <a href="mailto:alantharakan8@gmail.com">alantharakan8@gmail.com</a></div>
+      <div><span class="k">Telefon</span> <a href="tel:+4915223758228">+49 152 2375 8228</a></div>
+      <div><span class="k">LinkedIn</span> <a href="https://www.linkedin.com/in/alan-tharakan-6b4303174">linkedin.com/in/alan-tharakan</a></div>
+      <div><span class="k">Standort</span> Leipzig, bundesweit umzugsbereit</div>
+    </div>
+  </section>
+
+  <footer><p>Alan Tharakan &middot; Verfahrensingenieur &middot; Leipzig</p></footer>
+
+</div>
+</div>
+
+<script>
+  function setLang(l){
+    document.querySelectorAll('[data-lang]').forEach(function(el){
+      el.classList.toggle('on', el.getAttribute('data-lang') === l);
+    });
+    document.documentElement.lang = l;
+    document.title = (l === 'de')
+      ? 'Alan Tharakan | Verfahrensingenieur'
+      : 'Alan Tharakan | Process Engineer';
+    document.getElementById('btn-de').setAttribute('aria-pressed', l === 'de');
+    document.getElementById('btn-en').setAttribute('aria-pressed', l === 'en');
+    try { localStorage.setItem('lang', l); } catch(e) {}
+  }
+  (function(){
+    var l = null;
+    try { l = localStorage.getItem('lang'); } catch(e) {}
+    if (l !== 'de' && l !== 'en') {
+      l = (navigator.language || '').toLowerCase().indexOf('de') === 0 ? 'de' : 'en';
+    }
+    setLang(l);
+  })();
+</script>
+</body>
+</html>
