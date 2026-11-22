@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
-<title>Alan Tharakan | Process Engineer</title>
+<title>Alan Tharakan | Verfahrensingenieur</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;450;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -226,21 +226,21 @@
   <div class="inner">
     <span class="who">Alan Tharakan</span>
     <nav class="nav" id="nav">
-      <a data-k="work" href="#work-en"></a>
-      <a data-k="skills" href="#skills-en"></a>
-      <a data-k="now" href="#now-en"></a>
-      <a data-k="edu" href="#edu-en"></a>
-      <a data-k="contact" href="#contact-en"></a>
+      <a data-k="work" href="#work-de"></a>
+      <a data-k="projects" href="#projects-de"></a>
+      <a data-k="skills" href="#skills-de"></a>
+      <a data-k="edu" href="#edu-de"></a>
+      <a data-k="contact" href="#contact-de"></a>
     </nav>
     <div class="lang">
-      <button id="btn-de" aria-pressed="false" onclick="setLang('de')">De</button>
-      <button id="btn-en" aria-pressed="true" onclick="setLang('en')">En</button>
+      <button id="btn-de" aria-pressed="true" onclick="setLang('de')">De</button>
+      <button id="btn-en" aria-pressed="false" onclick="setLang('en')">En</button>
     </div>
   </div>
 </div>
 
 <!-- =========================== ENGLISH =========================== -->
-<div data-lang="en" class="on" lang="en">
+<div data-lang="en" lang="en">
 <div class="wrap">
 
   <header>
@@ -270,8 +270,80 @@
     </div>
   </header>
 
-  <section id="work-en"None>
+  <section id="work-en">
     <h2 data-n="01">Experience</h2>
+
+    <div class="item">
+      <h3>Seat assembly and inspection, Porsche Macan line</h3>
+      <p class="where">Adient, Leipzig &middot; since 03/2026</p>
+      <p>I inspect seat systems on a just-in-sequence line at the Porsche plant in Leipzig, working to
+        written inspection instructions and reporting deviations to shift management and the quality
+        department. Shift work in cycle-bound series production, with fixed quality and safety rules.
+        It is not process engineering, but it has taught me what a tolerance and a deviation mean when
+        the line is running and the customer is waiting.</p>
+    </div>
+
+    <div class="item">
+      <h3>Vacuum shredding and black mass processing, BASF cooperation project</h3>
+      <p class="where">Research assistant, process development &middot; TU Bergakademie Freiberg, MVTAT &middot; 04/2025 &ndash; 09/2025</p>
+      <p>I ran the experimental side of a parameter study on a vacuum shredder with integrated
+        drying, part of an industry cooperation with BASF. Whole lithium-ion cells went in, black mass
+        and sorted fractions came out, and I operated every stage of that chain myself, from feeding
+        the shredder to splitting samples down to analysis size. Batches of 1 to 6 kg, around ten
+        trial runs over six months.</p>
+
+      <div class="flow">
+        <div class="node in"><div class="n">Feed</div><div class="t">Lithium-ion cells</div><div class="s">1 to 6 kg per batch</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">01</div><div class="t">Vacuum shredding with integrated drying</div><div class="s">Heureka Zwei, No Canary; shredder and intensive mixer, solvent removed under vacuum</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">02</div><div class="t">First sieving</div><div class="s">Haver EML 450 sieve tower; fines below 1 mm are black mass</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">03</div><div class="t">Zig-zag air classification</div><div class="s">J&ouml;st LZS 10/120&times;240; casing out, light fraction on</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">04</div><div class="t">Secondary crushing</div><div class="s">Turbo rotor mill</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">05</div><div class="t">Second sieving</div><div class="s">finer cut, second black mass fraction</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">06</div><div class="t">Sample splitting</div><div class="s">Retsch PT rotary splitter, then micro splitter down to analysis size</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node out"><div class="n">Analysis</div><div class="t">Black mass</div><div class="s">ICP-OES and particle size</div></div>
+      </div>
+      <p class="vars"><b>Varied between runs:</b> drying time &middot; cell type &middot; turbo rotor
+        speed. Every run documented to the same scheme, measurement data prepared in Excel so the
+        supervising researcher could evaluate it directly. The evaluation and the thesis built on
+        these trials were theirs, the trial work was mine.</p>
+
+      <div class="tags"><span class="tag">Vacuum shredding</span><span class="tag">Drying</span><span class="tag">Sieving</span><span class="tag">Air classification</span><span class="tag">Black mass</span><span class="tag">Sample splitting</span><span class="tag">ICP-OES</span></div>
+    </div>
+
+    <div class="item">
+      <h3>Sorting and classification trials on secondary raw materials</h3>
+      <p class="where">Research assistant, battery recycling &middot; TU Bergakademie Freiberg &middot; 01/2023 &ndash; 03/2024</p>
+      <p>Sorting, sieving and classification experiments on secondary raw materials from battery
+        recycling, and the trial data collection behind them. This is the work that got me into
+        recycling in the first place.</p>
+    </div>
+
+    <div class="item">
+      <h3>Plant documentation and a project database in a planning office</h3>
+      <p class="where">Intern, process engineering &middot; Conveying Engineering &amp; Consulting GmbH, Leipzig &middot; 04/2024 &ndash; 06/2024</p>
+      <p>I checked drawings and plant documentation from bulk solids handling projects for
+        completeness and contradictions, and reported every deviation back to the responsible planner.
+        Alongside that I built a project database in Excel holding the design parameters of completed
+        projects.</p>
+    </div>
+
+    <div class="item">
+      <h3>Inspection of manufactured parts to drawing</h3>
+      <p class="where">Intern, quality assurance &middot; IPA Private Limited, Bengaluru &middot; 04/2019 &ndash; 06/2019</p>
+      <p>I inspected manufactured parts against technical drawings by measurement and visual check,
+        and documented the results.</p>
+    </div>
+  </section>
+
+  <section id="projects-en">
+    <h2 data-n="02">Thesis and projects</h2>
 
     <div class="item">
       <h3>Wet decoating of polymer-based solid-state battery cathodes</h3>
@@ -356,40 +428,6 @@
     </div>
 
     <div class="item">
-      <h3>Vacuum shredding and black mass processing, BASF cooperation project</h3>
-      <p class="where">Research assistant, process development &middot; TU Bergakademie Freiberg, MVTAT &middot; 04/2025 &ndash; 09/2025</p>
-      <p>I ran the experimental side of a parameter study on a vacuum shredder with integrated
-        drying, part of an industry cooperation with BASF. Whole lithium-ion cells went in, black mass
-        and sorted fractions came out, and I operated every stage of that chain myself, from feeding
-        the shredder to splitting samples down to analysis size. Batches of 1 to 6 kg, around ten
-        trial runs over six months.</p>
-
-      <div class="flow">
-        <div class="node in"><div class="n">Feed</div><div class="t">Lithium-ion cells</div><div class="s">1 to 6 kg per batch</div></div>
-        <span class="arr">&rarr;</span>
-        <div class="node"><div class="n">01</div><div class="t">Vacuum shredding with integrated drying</div><div class="s">Heureka Zwei, No Canary; shredder and intensive mixer, solvent removed under vacuum</div></div>
-        <span class="arr">&rarr;</span>
-        <div class="node"><div class="n">02</div><div class="t">First sieving</div><div class="s">Haver EML 450 sieve tower; fines below 1 mm are black mass</div></div>
-        <span class="arr">&rarr;</span>
-        <div class="node"><div class="n">03</div><div class="t">Zig-zag air classification</div><div class="s">J&ouml;st LZS 10/120&times;240; casing out, light fraction on</div></div>
-        <span class="arr">&rarr;</span>
-        <div class="node"><div class="n">04</div><div class="t">Secondary crushing</div><div class="s">Turbo rotor mill</div></div>
-        <span class="arr">&rarr;</span>
-        <div class="node"><div class="n">05</div><div class="t">Second sieving</div><div class="s">finer cut, second black mass fraction</div></div>
-        <span class="arr">&rarr;</span>
-        <div class="node"><div class="n">06</div><div class="t">Sample splitting</div><div class="s">Retsch PT rotary splitter, then micro splitter down to analysis size</div></div>
-        <span class="arr">&rarr;</span>
-        <div class="node out"><div class="n">Analysis</div><div class="t">Black mass</div><div class="s">ICP-OES and particle size</div></div>
-      </div>
-      <p class="vars"><b>Varied between runs:</b> drying time &middot; cell type &middot; turbo rotor
-        speed. Every run documented to the same scheme, measurement data prepared in Excel so the
-        supervising researcher could evaluate it directly. The evaluation and the thesis built on
-        these trials were theirs, the trial work was mine.</p>
-
-      <div class="tags"><span class="tag">Vacuum shredding</span><span class="tag">Drying</span><span class="tag">Sieving</span><span class="tag">Air classification</span><span class="tag">Black mass</span><span class="tag">Sample splitting</span><span class="tag">ICP-OES</span></div>
-    </div>
-
-    <div class="item">
       <h3>Comminution in lithium-ion battery recycling</h3>
       <p class="where">Project work &middot; TU Bergakademie Freiberg &middot; 04/2022 &ndash; 09/2022</p>
       <p>I quantified material release from NMC and LFP cells under different comminution conditions,
@@ -426,34 +464,10 @@
 
       <div class="tags"><span class="tag">Solid&ndash;liquid separation</span><span class="tag">Equipment design</span><span class="tag">Scale-up</span></div>
     </div>
-
-    <div class="item">
-      <h3>Sorting and classification trials on secondary raw materials</h3>
-      <p class="where">Research assistant, battery recycling &middot; TU Bergakademie Freiberg &middot; 01/2023 &ndash; 03/2024</p>
-      <p>Sorting, sieving and classification experiments on secondary raw materials from battery
-        recycling, and the trial data collection behind them. This is the work that got me into
-        recycling in the first place.</p>
-    </div>
-
-    <div class="item">
-      <h3>Plant documentation and a project database in a planning office</h3>
-      <p class="where">Intern, process engineering &middot; Conveying Engineering &amp; Consulting GmbH, Leipzig &middot; 04/2024 &ndash; 06/2024</p>
-      <p>I checked drawings and plant documentation from bulk solids handling projects for
-        completeness and contradictions, and reported every deviation back to the responsible planner.
-        Alongside that I built a project database in Excel holding the design parameters of completed
-        projects.</p>
-    </div>
-
-    <div class="item">
-      <h3>Inspection of manufactured parts to drawing</h3>
-      <p class="where">Intern, quality assurance &middot; IPA Private Limited, Bengaluru &middot; 04/2019 &ndash; 06/2019</p>
-      <p>I inspected manufactured parts against technical drawings by measurement and visual check,
-        and documented the results.</p>
-    </div>
   </section>
 
-  <section id="skills-en"None>
-    <h2 data-n="02">What I bring</h2>
+  <section id="skills-en">
+    <h2 data-n="03">What I bring</h2>
     <div class="grid">
       <div>
         <h3>Process analysis and optimisation</h3>
@@ -494,20 +508,8 @@
     </div>
   </section>
 
-  <section id="now-en"None>
-    <h2 data-n="03">Now</h2>
-    <div class="item">
-      <h3>Seat assembly and inspection, Porsche Macan line</h3>
-      <p class="where">Adient, Leipzig &middot; since 03/2026</p>
-      <p>I inspect seat systems on a just-in-sequence line at the Porsche plant in Leipzig, working to
-        written inspection instructions and reporting deviations to shift management and the quality
-        department. Shift work in cycle-bound series production, with fixed quality and safety rules.
-        It is not process engineering, but it has taught me what a tolerance and a deviation mean when
-        the line is running and the customer is waiting.</p>
-    </div>
-  </section>
 
-  <section id="edu-en"None>
+  <section id="edu-en">
     <h2 data-n="04">Education</h2>
     <div class="roles">
       <div class="r"><strong>M.Sc. Mechanical and Process Engineering</strong>
@@ -537,7 +539,7 @@
 </div>
 
 <!-- =========================== DEUTSCH =========================== -->
-<div data-lang="de" lang="de">
+<div data-lang="de" class="on" lang="de">
 <div class="wrap">
 
   <header>
@@ -567,8 +569,82 @@
     </div>
   </header>
 
-  <section id="work-de"None>
+  <section id="work-de">
     <h2 data-n="01">Berufserfahrung</h2>
+
+    <div class="item">
+      <h3>Sitzmontage und Pr&uuml;fung, Porsche Macan</h3>
+      <p class="where">Adient, Leipzig &middot; seit 03/2026</p>
+      <p>Ich pr&uuml;fe Sitzsysteme an einer Just-in-Sequence-Linie im Porsche Werk Leipzig nach
+        Pr&uuml;fanweisung und melde Abweichungen an Schichtf&uuml;hrung und Qualit&auml;tsstelle.
+        Schichtbetrieb in taktgebundener Serienfertigung mit festen Qualit&auml;ts- und
+        Sicherheitsvorgaben. Das ist keine Verfahrenstechnik, aber ich habe dort gelernt, was eine
+        Toleranz und eine Abweichung bedeuten, wenn die Linie l&auml;uft und der Kunde wartet.</p>
+    </div>
+
+    <div class="item">
+      <h3>Vakuumschreddern und Schwarzmasse-Aufbereitung, Industriekooperation mit BASF</h3>
+      <p class="where">Studentische Hilfskraft, Verfahrensentwicklung &middot; TU Bergakademie Freiberg, MVTAT &middot; 04/2025 &ndash; 09/2025</p>
+      <p>Ich fuhr den experimentellen Teil einer Parameterstudie an einem Vakuumschredder mit
+        integrierter Trocknung, Teil einer Industriekooperation mit BASF. Hinein gingen ganze
+        Lithium-Ionen-Zellen, heraus kamen Schwarzmasse und sortierte Fraktionen. Jede Stufe dieser
+        Kette habe ich selbst bedient, vom Beschicken des Schredders bis zur Probenteilung auf
+        Analysenmenge. Chargen von 1 bis 6 kg, rund zehn Versuchsl&auml;ufe &uuml;ber sechs Monate.</p>
+
+      <div class="flow">
+        <div class="node in"><div class="n">Aufgabe</div><div class="t">Lithium-Ionen-Zellen</div><div class="s">1 bis 6 kg je Charge</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">01</div><div class="t">Vakuumschreddern mit integrierter Trocknung</div><div class="s">Heureka Zwei, No Canary; Schredder und Intensivmischer, L&ouml;semittel unter Vakuum ausgetrieben</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">02</div><div class="t">Erste Siebung</div><div class="s">Siebturm Haver EML 450; Feingut unter 1 mm ist Schwarzmasse</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">03</div><div class="t">Zickzack-Sichtung</div><div class="s">J&ouml;st LZS 10/120&times;240; Geh&auml;useteile raus, Leichtgut weiter</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">04</div><div class="t">Nachzerkleinerung</div><div class="s">Turborotorm&uuml;hle</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">05</div><div class="t">Zweite Siebung</div><div class="s">feinerer Schnitt, zweite Schwarzmassefraktion</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node"><div class="n">06</div><div class="t">Probenteilung</div><div class="s">Retsch PT Rotationsteiler, danach Mikroteiler auf Analysenmenge</div></div>
+        <span class="arr">&rarr;</span>
+        <div class="node out"><div class="n">Analytik</div><div class="t">Schwarzmasse</div><div class="s">ICP-OES und Partikelgr&ouml;&szlig;e</div></div>
+      </div>
+      <p class="vars"><b>Variiert zwischen den L&auml;ufen:</b> Trocknungszeit &middot; Zelltyp
+        &middot; Drehzahl der Turborotorm&uuml;hle. Jeder Lauf nach einheitlichem Schema
+        dokumentiert, die Messdaten in Excel so aufbereitet, dass der betreuende Wissenschaftler
+        direkt auswerten konnte. Auswertung und Abschlussarbeit auf Basis dieser Versuche lagen bei
+        ihm, die Versuchsarbeit bei mir.</p>
+
+      <div class="tags"><span class="tag">Vakuumschreddern</span><span class="tag">Trocknung</span><span class="tag">Siebung</span><span class="tag">Sichtung</span><span class="tag">Schwarzmasse</span><span class="tag">Probenteilung</span><span class="tag">ICP-OES</span></div>
+    </div>
+
+    <div class="item">
+      <h3>Sortier- und Klassierversuche an Sekund&auml;rrohstoffen</h3>
+      <p class="where">Studentische Hilfskraft, Batterierecycling &middot; TU Bergakademie Freiberg &middot; 01/2023 &ndash; 03/2024</p>
+      <p>Sortier-, Sieb- und Klassierversuche an Sekund&auml;rrohstoffen aus dem Batterierecycling,
+        dazu die Erfassung der Versuchsdaten f&uuml;r die Auswertung am Institut. Mit dieser Arbeit
+        bin ich zum Recycling gekommen.</p>
+    </div>
+
+    <div class="item">
+      <h3>Anlagenunterlagen und Projektdatenbank im Ingenieurb&uuml;ro</h3>
+      <p class="where">Praktikant Verfahrenstechnik &middot; Conveying Engineering &amp; Consulting GmbH, Leipzig &middot; 04/2024 &ndash; 06/2024</p>
+      <p>Ich pr&uuml;fte Zeichnungen und Anlagenunterlagen aus Projekten der
+        Sch&uuml;ttgutf&ouml;rdertechnik auf Vollst&auml;ndigkeit und Widerspr&uuml;che und meldete
+        jede Abweichung an den zust&auml;ndigen Planer zur&uuml;ck. Parallel baute ich eine
+        Projektdatenbank in Excel auf und erfasste die Auslegungskennwerte abgeschlossener
+        Projekte.</p>
+    </div>
+
+    <div class="item">
+      <h3>Pr&uuml;fung von Fertigungsteilen nach Zeichnung</h3>
+      <p class="where">Praktikant Qualit&auml;tssicherung &middot; IPA Private Limited, Bengaluru &middot; 04/2019 &ndash; 06/2019</p>
+      <p>Ich pr&uuml;fte Fertigungsteile nach technischer Zeichnung per Ma&szlig;- und
+        Sichtpr&uuml;fung und dokumentierte die Ergebnisse.</p>
+    </div>
+  </section>
+
+  <section id="projects-de">
+    <h2 data-n="02">Abschlussarbeit und Projekte</h2>
 
     <div class="item">
       <h3>Nassmechanisches Decoating polymerbasierter Feststoffbatterie-Kathoden</h3>
@@ -655,41 +731,6 @@
     </div>
 
     <div class="item">
-      <h3>Vakuumschreddern und Schwarzmasse-Aufbereitung, Industriekooperation mit BASF</h3>
-      <p class="where">Studentische Hilfskraft, Verfahrensentwicklung &middot; TU Bergakademie Freiberg, MVTAT &middot; 04/2025 &ndash; 09/2025</p>
-      <p>Ich fuhr den experimentellen Teil einer Parameterstudie an einem Vakuumschredder mit
-        integrierter Trocknung, Teil einer Industriekooperation mit BASF. Hinein gingen ganze
-        Lithium-Ionen-Zellen, heraus kamen Schwarzmasse und sortierte Fraktionen. Jede Stufe dieser
-        Kette habe ich selbst bedient, vom Beschicken des Schredders bis zur Probenteilung auf
-        Analysenmenge. Chargen von 1 bis 6 kg, rund zehn Versuchsl&auml;ufe &uuml;ber sechs Monate.</p>
-
-      <div class="flow">
-        <div class="node in"><div class="n">Aufgabe</div><div class="t">Lithium-Ionen-Zellen</div><div class="s">1 bis 6 kg je Charge</div></div>
-        <span class="arr">&rarr;</span>
-        <div class="node"><div class="n">01</div><div class="t">Vakuumschreddern mit integrierter Trocknung</div><div class="s">Heureka Zwei, No Canary; Schredder und Intensivmischer, L&ouml;semittel unter Vakuum ausgetrieben</div></div>
-        <span class="arr">&rarr;</span>
-        <div class="node"><div class="n">02</div><div class="t">Erste Siebung</div><div class="s">Siebturm Haver EML 450; Feingut unter 1 mm ist Schwarzmasse</div></div>
-        <span class="arr">&rarr;</span>
-        <div class="node"><div class="n">03</div><div class="t">Zickzack-Sichtung</div><div class="s">J&ouml;st LZS 10/120&times;240; Geh&auml;useteile raus, Leichtgut weiter</div></div>
-        <span class="arr">&rarr;</span>
-        <div class="node"><div class="n">04</div><div class="t">Nachzerkleinerung</div><div class="s">Turborotorm&uuml;hle</div></div>
-        <span class="arr">&rarr;</span>
-        <div class="node"><div class="n">05</div><div class="t">Zweite Siebung</div><div class="s">feinerer Schnitt, zweite Schwarzmassefraktion</div></div>
-        <span class="arr">&rarr;</span>
-        <div class="node"><div class="n">06</div><div class="t">Probenteilung</div><div class="s">Retsch PT Rotationsteiler, danach Mikroteiler auf Analysenmenge</div></div>
-        <span class="arr">&rarr;</span>
-        <div class="node out"><div class="n">Analytik</div><div class="t">Schwarzmasse</div><div class="s">ICP-OES und Partikelgr&ouml;&szlig;e</div></div>
-      </div>
-      <p class="vars"><b>Variiert zwischen den L&auml;ufen:</b> Trocknungszeit &middot; Zelltyp
-        &middot; Drehzahl der Turborotorm&uuml;hle. Jeder Lauf nach einheitlichem Schema
-        dokumentiert, die Messdaten in Excel so aufbereitet, dass der betreuende Wissenschaftler
-        direkt auswerten konnte. Auswertung und Abschlussarbeit auf Basis dieser Versuche lagen bei
-        ihm, die Versuchsarbeit bei mir.</p>
-
-      <div class="tags"><span class="tag">Vakuumschreddern</span><span class="tag">Trocknung</span><span class="tag">Siebung</span><span class="tag">Sichtung</span><span class="tag">Schwarzmasse</span><span class="tag">Probenteilung</span><span class="tag">ICP-OES</span></div>
-    </div>
-
-    <div class="item">
       <h3>Zerkleinerung im Lithium-Ionen-Batterie-Recycling</h3>
       <p class="where">Projektarbeit &middot; TU Bergakademie Freiberg &middot; 04/2022 &ndash; 09/2022</p>
       <p>Ich quantifizierte die Materialfreisetzung von NMC- und LFP-Zellen unter verschiedenen
@@ -727,35 +768,10 @@
 
       <div class="tags"><span class="tag">Fest-Fl&uuml;ssig-Trennung</span><span class="tag">Apparateauslegung</span><span class="tag">Scale-up</span></div>
     </div>
-
-    <div class="item">
-      <h3>Sortier- und Klassierversuche an Sekund&auml;rrohstoffen</h3>
-      <p class="where">Studentische Hilfskraft, Batterierecycling &middot; TU Bergakademie Freiberg &middot; 01/2023 &ndash; 03/2024</p>
-      <p>Sortier-, Sieb- und Klassierversuche an Sekund&auml;rrohstoffen aus dem Batterierecycling,
-        dazu die Erfassung der Versuchsdaten f&uuml;r die Auswertung am Institut. Mit dieser Arbeit
-        bin ich zum Recycling gekommen.</p>
-    </div>
-
-    <div class="item">
-      <h3>Anlagenunterlagen und Projektdatenbank im Ingenieurb&uuml;ro</h3>
-      <p class="where">Praktikant Verfahrenstechnik &middot; Conveying Engineering &amp; Consulting GmbH, Leipzig &middot; 04/2024 &ndash; 06/2024</p>
-      <p>Ich pr&uuml;fte Zeichnungen und Anlagenunterlagen aus Projekten der
-        Sch&uuml;ttgutf&ouml;rdertechnik auf Vollst&auml;ndigkeit und Widerspr&uuml;che und meldete
-        jede Abweichung an den zust&auml;ndigen Planer zur&uuml;ck. Parallel baute ich eine
-        Projektdatenbank in Excel auf und erfasste die Auslegungskennwerte abgeschlossener
-        Projekte.</p>
-    </div>
-
-    <div class="item">
-      <h3>Pr&uuml;fung von Fertigungsteilen nach Zeichnung</h3>
-      <p class="where">Praktikant Qualit&auml;tssicherung &middot; IPA Private Limited, Bengaluru &middot; 04/2019 &ndash; 06/2019</p>
-      <p>Ich pr&uuml;fte Fertigungsteile nach technischer Zeichnung per Ma&szlig;- und
-        Sichtpr&uuml;fung und dokumentierte die Ergebnisse.</p>
-    </div>
   </section>
 
-  <section id="skills-de"None>
-    <h2 data-n="02">Fachkompetenzen</h2>
+  <section id="skills-de">
+    <h2 data-n="03">Fachkompetenzen</h2>
     <div class="grid">
       <div>
         <h3>Prozessanalyse und Optimierung</h3>
@@ -796,20 +812,8 @@
     </div>
   </section>
 
-  <section id="now-de"None>
-    <h2 data-n="03">Aktuell</h2>
-    <div class="item">
-      <h3>Sitzmontage und Pr&uuml;fung, Porsche Macan</h3>
-      <p class="where">Adient, Leipzig &middot; seit 03/2026</p>
-      <p>Ich pr&uuml;fe Sitzsysteme an einer Just-in-Sequence-Linie im Porsche Werk Leipzig nach
-        Pr&uuml;fanweisung und melde Abweichungen an Schichtf&uuml;hrung und Qualit&auml;tsstelle.
-        Schichtbetrieb in taktgebundener Serienfertigung mit festen Qualit&auml;ts- und
-        Sicherheitsvorgaben. Das ist keine Verfahrenstechnik, aber ich habe dort gelernt, was eine
-        Toleranz und eine Abweichung bedeuten, wenn die Linie l&auml;uft und der Kunde wartet.</p>
-    </div>
-  </section>
 
-  <section id="edu-de"None>
+  <section id="edu-de">
     <h2 data-n="04">Studium</h2>
     <div class="roles">
       <div class="r"><strong>M.Sc. Maschinenbau und Verfahrenstechnik</strong>
@@ -840,8 +844,8 @@
 
 <script>
   var NAV = {
-    en:{work:"Experience",skills:"Skills",now:"Now",edu:"Education",contact:"Contact"},
-    de:{work:"Berufserfahrung",skills:"Fachkompetenzen",now:"Aktuell",edu:"Studium",contact:"Kontakt"}
+    en:{work:"Experience",projects:"Projects",skills:"Skills",edu:"Education",contact:"Contact"},
+    de:{work:"Berufserfahrung",projects:"Projekte",skills:"Fachkompetenzen",edu:"Studium",contact:"Kontakt"}
   };
   function setLang(l){
     document.querySelectorAll('[data-lang]').forEach(function(el){
@@ -864,7 +868,7 @@
     var l = null;
     try { l = localStorage.getItem('lang'); } catch(e) {}
     if (l !== 'de' && l !== 'en') {
-      l = (navigator.language || '').toLowerCase().indexOf('de') === 0 ? 'de' : 'en';
+      l = 'de';
     }
     setLang(l);
     var bar = document.getElementById('bar');
